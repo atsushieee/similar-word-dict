@@ -1,0 +1,30 @@
+version: 1
+
+formatters:
+  basic:
+    format: '[%(asctime)s] %(name)s - %(levelname)s: %(message)s'
+    datefmt: '%Y-%m-%d %H:%M:%S'
+
+loggers:
+  app:
+    level: DEBUG
+    handlers: [consoleHandler, fileHandler]
+    propagate: no
+
+handlers:
+  fileHandler:
+    class: logging.FileHandler
+    level: INFO
+    formatter: basic
+    filename: /log/debug.log
+    encoding: utf8
+
+  consoleHandler:
+    class: logging.StreamHandler
+    level: DEBUG
+    formatter: basic
+    stream: ext://sys.stdout
+
+root:
+  level: INFO
+  handlers: [consoleHandler, fileHandler]
